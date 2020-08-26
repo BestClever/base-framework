@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>新增数据</title>
+    <link rel="stylesheet" th:href="@{/component/layui/css/layui.css}"/>
+</head>
+<body class="layui-bg-gray">
+<div class="layui-row">
+    <div class="layui-col-md12">
+        <div class="layui-card"  style="margin: 10px;">
+            <div class="layui-card-body">
+                <form class="layui-form" action="">
+                    <input name="appointId" type="text" style="display: none">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="userId" id="userId" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="userName" id="userName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="outpatientId" id="outpatientId" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="appointDate" id="appointDate" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="appointStage" id="appointStage" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="appointStageName" id="appointStageName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="appointStatus" id="appointStatus" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">可以是医生 也可以是用户<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="cancelId" id="cancelId" lay-verify="required" placeholder="请输入可以是医生 也可以是用户" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="cancelName" id="cancelName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">医嘱<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="medicalAdvice" id="medicalAdvice" lay-verify="required" placeholder="请输入医嘱" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">患者类型:1门诊2回诊<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="patientType" id="patientType" lay-verify="required" placeholder="请输入患者类型:1门诊2回诊" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">位置<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="location" id="location" lay-verify="required" placeholder="请输入位置" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formBtn">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/component/layui/layui.js}"></script>
+<script th:src="@{/assets/common/lay-config.js}"></script>
+<script>
+    layui.use(['layer','jquery','form','fast'], function() {
+        var $ = layui.jquery
+            ,form = layui.form
+            ,layer = layui.layer
+            ,fast = layui.fast;
+
+        //监听提交
+        form.on('submit(formBtn)', function(data) {
+            $.ajax({
+                type: 'post',
+                url: fast.ctxPath + '/appoint/addAppoint',
+                data: data.field,
+                dataType: 'json',
+                success: function (data) {
+                    // 提示信息
+                    top.layer.msg(data.message, {icon: 1});
+                    // 获取当前iframe层的索引
+                    var index = parent.layer.getFrameIndex(window.name);
+                    // 关闭弹窗
+                    parent.layer.close(index);
+                    // 重载表格
+                    parent.layui.table.reload('appointTable',{page:{curr:1}});
+                },
+                error: function (XMLHttpRequest,textStatus) {
+                    layer.msg('请求失败，系统发生异常', {icon: 2});
+                    console.log(textStatus);
+                }
+            });
+            return false;
+        });
+
+
+    });
+</script>
+</body>
+</html>

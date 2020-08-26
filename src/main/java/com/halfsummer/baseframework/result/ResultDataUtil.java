@@ -6,6 +6,8 @@ package com.halfsummer.baseframework.result;
 import com.halfsummer.baseframework.exception.BaseInfoInterface;
 import com.halfsummer.baseframework.exception.BizException;
 
+import java.util.List;
+
 /**
  *  ResponseDataUtil:返回的工具类,主要是方便返回的写法
  *  * 单纯的返回工具类,直接放在这个包
@@ -18,7 +20,7 @@ public class ResultDataUtil {
      * @return
      */
     public static ResultInfo createSuccess(BaseInfoInterface baseInfoInterface){
-        return new ResultInfo().setSuccess(true).setCode(baseInfoInterface.getResultCode()).setMsg(baseInfoInterface.getResultMsg());
+        return new ResultInfo().setSucess(true).setCode(baseInfoInterface.getResultCode()).setMsg(baseInfoInterface.getResultMsg());
     }
 
 
@@ -28,14 +30,14 @@ public class ResultDataUtil {
      * @return
      */
     public static ResultInfo createFail(BaseInfoInterface baseInfoInterface){
-        return new ResultInfo().setSuccess(false).setCode(baseInfoInterface.getResultCode()).setMsg(baseInfoInterface.getResultMsg());
+        return new ResultInfo().setSucess(false).setCode(baseInfoInterface.getResultCode()).setMsg(baseInfoInterface.getResultMsg());
     }
 
     /**
      * 失败
      */
     public static ResultInfo createFail(Integer code, String message) {
-        return new ResultInfo().setSuccess(false).setCode(code).setMsg(message);
+        return new ResultInfo().setSucess(false).setCode(code).setMsg(message);
     }
 
 

@@ -12,7 +12,7 @@ public class ResultInfo<T> {
     /**
      * 返回是否成功
      */
-    private boolean success;
+    private boolean sucess;
 
     /**
      * 统一返回码
@@ -29,12 +29,12 @@ public class ResultInfo<T> {
      */
     public T data;
 
-    public boolean isSuccess() {
-        return success;
+    public boolean isSucess() {
+        return sucess;
     }
 
-    public ResultInfo setSuccess(boolean success) {
-        this.success = success;
+    public ResultInfo setSucess(boolean sucess) {
+        this.sucess = sucess;
         return this;
     }
 

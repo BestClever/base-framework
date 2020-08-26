@@ -21,6 +21,7 @@ public enum CommonEnum implements BaseInfoInterface {
 
 	ARITHMETIC_ERROR(1100,"数学运算错误!"),
 	SAVE_FAILED(101,"保存失败,请重试"),
+	DATA_DOESNT_EXIST(10086,"该用户无排队信息"),
 
 	//用户模块 成功
 	LOGIN_SUCCESS(2000,"登录成功"),
@@ -30,7 +31,21 @@ public enum CommonEnum implements BaseInfoInterface {
 	USER_FORBIDDEN(2052,"用户被禁用"),
 	USER_DELETE(2053,"用户被禁用"),
 
-
+	/*查询*/
+	SELECT_SUCCESS(9001,"查询成功！"),
+	SELECT_FAILURE(9051,"查询失败！"),
+	/*添加*/
+	ADD_SUCCESS(9101, "新增成功！"),
+	ADD_FAILURE(9151, "新增失败！"),
+	/*更新*/
+	UPDATE_SUCCESS(9201, "更新成功！"),
+	UPDATE_FAILURE(9251, "更新失败！"),
+	/*删除*/
+	REMOVE_SUCCESS(9301, "删除成功！"),
+	REMOVE_FAILURE(9351, "删除失败！"),
+	/*删除*/
+	REMOVE_BATCH_SUCCESS(9401, "批量删除成功！"),
+	REMOVE_BATCH_FAILURE(9451, "批量删除失败！"),
 	;
 
 	/** 错误码 */

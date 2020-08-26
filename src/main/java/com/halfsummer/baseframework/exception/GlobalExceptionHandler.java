@@ -5,11 +5,14 @@ import com.halfsummer.baseframework.result.ResultDataUtil;
 import com.halfsummer.baseframework.result.ResultInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 /**
@@ -52,6 +55,19 @@ public class GlobalExceptionHandler {
 		return ResultDataUtil.createFail(CommonEnum.BODY_NOT_MATCH);
 	}
 
+	/**
+	 * 参数校验失败
+	 * @param e
+	 * @return
+	 */
+	@ExceptionHandler(value =MethodArgumentNotValidException.class)
+	@ResponseBody
+	public ResultInfo methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e){
+		logger.error("发生参数校验失败！原因是:",e);
+		// 从异常对象中拿到ObjectError对象
+		ObjectError objectError = e.getBindingResult().getAllErrors().get(0);
+		return ResultDataUtil.createFail(CommonEnum.BODY_NOT_MATCH).setData(objectError.getDefaultMessage());
+	}
 
     /**
         * 处理其他异常
