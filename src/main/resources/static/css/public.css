@@ -1,0 +1,19 @@
+/* 数据表格条件搜索表单样式 */
+.layui-input-inline input {
+    height: 30px;
+}
+
+.layui-form-label {
+    width: auto;
+    line-height: 12px;
+}
+
+.layui-form-item {
+    margin-bottom: 0;
+}
+
+.layui-card-custom{
+    -webkit-box-shadow:0 0 40px rgba(0,0,0,.12);
+    box-shadow:0 0 40px rgba(0,0,0,.12);
+    border-radius:5px
+}
